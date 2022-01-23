@@ -5,11 +5,14 @@ Airtable.configure({
     apiKey: process.env.AIRTABLE_API_KEY
 });
 
+// Initiliaze Airtable SDK and passing credentials via .env files
 ;const base = Airtable.base(process.env.AIRTABLE_BASE);
 const table = base.table(process.env.AIRTABLE_TABLE);
 
+// Passing LinkedIn user ID for query
 const testUserId = "fw0Q4qTTPN";
 
+// Filtering by LinkedIn user ID
 exports.handler = async (event) => {
     try {
         const records = await table
