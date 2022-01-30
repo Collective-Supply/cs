@@ -1,22 +1,16 @@
-require('dotenv').config();
-const Airtable = require('airtable');
+const { tableDesigners } = require('./util/Airtable');
 
-Airtable.configure({
-    apiKey: process.env.AIRTABLE_API_KEY
-});
-
-// Initiliaze Airtable SDK and passing credentials via .env files
-;const base = Airtable.base(process.env.AIRTABLE_BASE);
-const table = base.table(process.env.AIRTABLE_TABLE);
-
-// Passing LinkedIn user ID for query
-const testUserId = "fw0Q4qTTPN";
+// url to access function: http://localhost:8888/api/GetDesigner
 
 // Filtering by LinkedIn user ID
 exports.handler = async (event) => {
+
+    //passedParam is the ?search=shared link to search by on AirTable
+    const passedParam = event.queryStringParameters.share
+
     try {
-        const records = await table
-            .select({filterByFormula: `{user_id} = "${testUserId}"`})
+        const records = await tableDesigners
+            .select({filterByFormula: `{shared_links} = "${passedParam}"`})
             .firstPage();
         const formattedRecords = records.map(record => ({
             id: record.id,
