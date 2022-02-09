@@ -1,0 +1,47 @@
+type user {
+  given_name: String
+  family_name: String
+  nickname: String
+  name: String
+  picture: String
+  updated_at: String
+  email: String
+  emailed_verified: Boolean
+  sub: String
+  profiles: [profile] @relation
+}
+
+type profile {
+  owner: user
+  profile_name: String
+  share_links: [share_link] @relation
+  job_title: String
+  years_of_exp: Int
+  active: Boolean
+}
+
+type share_link {
+  profile: profile
+  link_name: String
+  job_link: String
+  url: String
+  view_sessions: [view_session] @relation
+  active: Boolean
+}
+
+type view_session {
+  share_link: share_link
+  viewer: user
+}
+
+type Query {
+  all_users: [user]
+  all_profiles: [profile]
+  all_share_links: [share_link]
+  all_view_sessions: [view_session]
+  user_by_sub(sub: String!): user
+  user_by_full_name(name: String!): user
+  user_by_family_name(family_name: String!): user
+  user_by_given_name(given_name: String!): user
+  share_link_by_url(url: String!): share_link
+}

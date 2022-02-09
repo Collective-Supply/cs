@@ -1,24 +1,24 @@
 const axios = require('axios');
 require('dotenv').config();
-const { DELETE_SHARE_LINK } = require('./utils/graphQueries.js');
+const { TOGGLE_SHARE_LINK_ACTIVE } = require('./utils/graphQueries.js');
 const sendQuery = require('./utils/sendQuery');
 const formattedResponse = require('./utils/formattedResponse');
 
 exports.handler = async (event) => {
-
-    const id = "323040669977280576";
+    
+    const id = "322268574405099586";
     const variables = { id };
     
     try {
-        const { deleteShare_link } = await sendQuery(
-            DELETE_SHARE_LINK,
+        const { updateShare_link } = await sendQuery(
+            TOGGLE_SHARE_LINK_ACTIVE, 
             variables
         );
 
-        return formattedResponse(200, deleteShare_link);
+        return formattedResponse(200, updateShare_link);
     } catch (err) {
         console.error(err);
-        return formattedResponse(500, { err: 'There was an error in deleting a link' });
+        return formattedResponse(500, { err: 'There was an error in activating a link.' });
     }
 };
 
