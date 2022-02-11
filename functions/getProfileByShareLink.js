@@ -5,7 +5,7 @@ const sendQuery = require('./utils/sendQuery');
 const formattedResponse = require('./utils/formattedResponse');
 
 exports.handler = async (event) => {
-    const url = "xYsH2U"
+    const { url } = JSON.parse(event.body);
     const variables = { url };
     
     try {

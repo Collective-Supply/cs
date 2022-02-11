@@ -18,32 +18,22 @@ const GET_PROFILE_BY_SHARE_LINK_URL = `
 const GET_USER_BY_SUB = `
   query($sub: String!) {
     user_by_sub(sub: $sub) {
-      _id
-      name
-      email
-      picture
-      profiles {
-        data {
-          job_title
-          years_of_exp
-          active
-          share_links {
-            data {
-              _id
-              _ts
-              link_name
-              job_link
-              url
-              active
-              view_sessions {
-                data {
-                  _id
-                  _ts
-                  viewer {
-                    name
-                    picture
-                    email
-                  }
+    name
+    profiles {
+      data {
+        share_links {
+          data {
+            link_name
+            job_link
+            url
+            active
+            _ts
+            view_sessions {
+              data {
+                _ts
+                viewer {
+                  name
+                  picture
                 }
               }
             }
@@ -52,6 +42,7 @@ const GET_USER_BY_SUB = `
       }
     }
   }
+}
 `;
 
 const GET_USER_EXIST_BY_SUB = `

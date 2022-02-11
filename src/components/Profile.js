@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import JSONPretty from 'react-json-pretty';
+import LoginButton from './LoginButton';
 
 const Profile = () => {
     const { user, isAuthenticated } = useAuth0();
@@ -25,6 +26,8 @@ const Profile = () => {
         .find(row => row.startsWith('urlParam='))
         .split('=')[1];
     
+    LogoutButton();    
+
     // useState to display default shared designer's profile
     // Preview and then reveals it on sign in
     const [profilePreview, revealProfile] = useState([]);
@@ -38,50 +41,12 @@ const Profile = () => {
                 <p>{user.email}</p>
                 <p>{user.sub}</p>
                 
-                <JSONPretty data={user} />
+                <JSONPretty data={user} /> 
                 
         </div>
         )
 
     )
-
-
-
-
-//     // Query designer's ID through shared link table
-//     useEffect(() => {
-//         const GetDesignerIdByLink = async() => {
-//                 try {
-//                     const res = await fetch(`/api/GetDesignerIdByLink?share=${urlParamCookie}`);
-//                     const designerProfileObj = await res.json();
-//                     revealProfile(designerProfileObj);
-//                 } catch(err) {
-//                     console.error(err)
-//                 }
-//         }
-//         GetDesignerIdByLink();
-//     }, []);
-
-//     User profile only returned if user is logged in
-//     profile.js is currently pulled in by app.js
-//     return (
-
-//         isAuthenticated && (
-//             <div>
-//                 <ul>
-//                     <li><p>user: {user.name}</p></li>
-                
-//                     {profilePreview.map(item =>
-//                         <li><strong>Queried Designer:</strong> {item.fields.user_id_designer} {item.fields.created}
-//                         <br />{item.fields.email}                    
-//                         <br /><img src={item.fields.picture} alt={user.name} /></li>
-//                         )}
-//                 </ul>
-                
-//             </div>
-//         )
-
-//     )
 };    
 
 export default Profile;
