@@ -1,7 +1,7 @@
+// stop here!
 import React, { useState, useEffect } from 'react';
-import ProfileFetcher from './ProfileFetcher';
 
-const UrlParser = () => {
+export default function UrlParser() {
 
   // HTML parameter to pass to db to point to shared link ID
   // https://www.sitepoint.com/get-url-parameters-with-javascript/
@@ -26,13 +26,46 @@ const UrlParser = () => {
   // Connect the cookie parameter and feed it back as the url after logging in    
   const url = urlParamCookie;
 
- ProfileFetcher(url);
+
+
+ const loadProfile = async() => {
+    const body = { url };
+    const res = await fetch('/api/getProfileByShareLink', {
+      method: 'POST',
+      body: JSON.stringify(body)
+    });
+    
+  const designerProfile = await res.json();
+
+  const profileUser = JSON.stringify(designerProfile);
+  
+  console.log(url)
+  //output should be the url parameter based on the cookie
+  console.log(designerProfile) 
+  //output should be the designer's profile and basic info
+  console.log(designerProfile.profile.job_title) 
+  //output should be "Product Design Lead"
+  
+};
+
+useEffect(() =>{
+  loadProfile();
+}, []);
+    
 
   return (
     <p>Share Link: https://collective.supply/?x={url}</p>
-  );
+    );
+
+
 };
 
 
 
-export default UrlParser;
+
+
+
+
+
+
+
