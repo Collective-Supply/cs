@@ -1,3 +1,6 @@
+//NO NEED FOR THIS BECAUSE USER IS AUTOMATICALLY CREATED ON SIGN UP VIA Post User Registration ACTIONS ON AUTH0
+
+
 const axios = require('axios');
 require('dotenv').config();
 const { GET_USER_EXIST_BY_SUB } = require('./utils/graphQueries.js');
@@ -6,7 +9,7 @@ const formattedResponse = require('./utils/formattedResponse');
 
 exports.handler = async (event) => {
     
-    const sub = "linkedin|fw0Q4qTTPN";
+    const { sub } = JSON.parse(event.body);
     const variables = { sub };
     
     try {

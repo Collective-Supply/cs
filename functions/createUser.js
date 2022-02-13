@@ -1,3 +1,6 @@
+//NO NEED FOR THIS BECAUSE USER IS AUTOMATICALLY CREATED ON SIGN UP VIA Post User Registration ACTIONS ON AUTH0
+
+
 const axios = require('axios');
 require('dotenv').config();
 const { CREATE_USER } = require('./utils/graphQueries.js');

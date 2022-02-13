@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
 import JSONPretty from 'react-json-pretty';
+import { useAuth0 } from '@auth0/auth0-react';
 
-const Profile = () => {
-    const { user, isAuthenticated } = useAuth0();
-
+export default function UrlParser() {
+    
     // HTML parameter to pass to db to point to shared link ID
     // https://www.sitepoint.com/get-url-parameters-with-javascript/
     const queryString = window.location.search;
@@ -25,7 +24,7 @@ const Profile = () => {
         .find(row => row.startsWith('urlParam='))
         .split('=')[1];
 
-    // Connect the cookie parameter and feed it back as the url after logging in    
+  // Connect the cookie parameter and feed it back as the url after logging in    
     const url = urlParamCookie;
 
     const loadProfile = async() => {
@@ -39,29 +38,70 @@ const Profile = () => {
         setProfileJson(designerProfile)
     };
 
-    // useEffect and useState loads the user's profile
     useEffect(() =>{
         loadProfile();
     }, []);
+
     const [profileJson, setProfileJson] = useState({}) 
 
-    return (
-    // this is returning the auth0 viewer's info grabbed from linkedin's OAuth API, this info shouldn't be rendered, instead it should be passed to DB to create a new user        
-        isAuthenticated && (
-            <div>
-                <p><JSONPretty data={profileJson} /></p>
-                
-                <img src={user.picture} alt={user.name} />
-                <h2>{user.id}</h2>
-                <p>{user.email}</p>
-                <p>{user.sub}</p>
-                
-                <JSONPretty data={user} /> 
-                
-        </div>
-        )
-    )
-};    
 
-export default Profile;
+    // Check to see if user exists (WIP)
+
+    // user object isnt present in here, have to pull from the profile.js file's auth0
+    // const sub = user.sub;
+
+    // const checkUserExist = async() => {
+    //     const body = { sub };
+    //     const res = await fetch('/api/getUserExistBySub', {
+    //     method: 'POST',
+    //     body: JSON.stringify(body)
+    //     });
+        
+    //     const userExist = await res.json();
+    //     console.log(userExist);
+    // };
+
+    // useEffect(() =>{
+    //     checkUserExist();
+    // }, []);
+    
+    // If user doesn't exist, then create user in db using createUser, otherwise skip to recording the view session
+
+
+
+    // recording the view session below    
+    // const share_link = profileJson._id;
+    // const viewer = 
+    
+    // const registerViewSession = async() => {
+    //     const body = { share_link, viewer };
+    //     const res = await fetch('/api/createViewSession', {
+    //     method: 'POST',
+    //     body: JSON.stringify(body)
+    //     });
+        
+    //     const designerProfile = await res.json();
+    //     setProfileJson(designerProfile)
+    // };
+
+
+    return (
+        <>    
+            <div>
+
+                <p><JSONPretty data={profileJson} /></p>
+
+            </div>
+        </>
+    );
+};
+
+
+
+
+
+
+
+
+
 

@@ -6,9 +6,7 @@ const formattedResponse = require('./utils/formattedResponse');
 
 exports.handler = async (event) => {
 
-    const share_link = "323093014295609408";
-    const viewer = "323087719398899779";
-
+    const { share_link, viewer } = JSON.parse(event.body);
     const variables = { share_link, viewer };
 
     try {
