@@ -45,7 +45,7 @@ const GET_USER_BY_SUB = `
 }
 `;
 
-const GET_USER_EXIST_BY_SUB = `
+const GET_USER_ID_BY_SUB = `
   query($sub: String!) {
     user_by_sub(sub: $sub) {
       _id
@@ -231,7 +231,7 @@ const DELETE_SHARE_LINK = `
 module.exports = {
     GET_PROFILE_BY_SHARE_LINK_URL,
     GET_USER_BY_SUB,
-    GET_USER_EXIST_BY_SUB,
+    GET_USER_ID_BY_SUB,
     GET_VIEW_SESSIONS_BY_SHARE_LINK_URL,
     CREATE_USER,
     CREATE_SHARE_LINK,
