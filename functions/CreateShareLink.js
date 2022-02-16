@@ -16,13 +16,10 @@ exports.handler = async (event) => {
         return result;
     }
 
-    const profile = "322908312739774530";
-    const link_name = "I hope this works";
-    const job_link = "lol";
     const url = makeid(5);
     const active = true;
-
-    const variables = { profile, link_name, job_link, url, active };
+    const { profile_id, link_name, job_link } = JSON.parse(event.body);
+    const variables = { profile_id, link_name, job_link, url, active };
 
     try {
         const { createShare_link } = await sendQuery(
@@ -37,4 +34,4 @@ exports.handler = async (event) => {
     }
 };
 
-//COMPELTE
+//COMPLETE

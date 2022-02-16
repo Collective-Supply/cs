@@ -28,12 +28,16 @@ const GET_USER_BY_SUB = `
             url
             active
             _ts
+            _id
             view_sessions {
               data {
                 _ts
+                _id
                 viewer {
                   name
                   picture
+                  _id
+                  _ts
                 }
               }
             }
@@ -53,6 +57,18 @@ const GET_USER_ID_BY_SUB = `
   }
 `;
 
+const GET_PROFILE_ID_BY_SUB = `
+  query($sub: String!) {
+    user_by_sub(sub: $sub) {
+      profiles {
+        data {
+          _id
+        }
+      }
+    }
+  }
+`;
+
 const GET_VIEW_SESSIONS_BY_SHARE_LINK_URL =`
   query($url: String!) {
     share_link_by_url(url: $url) {
@@ -63,6 +79,8 @@ const GET_VIEW_SESSIONS_BY_SHARE_LINK_URL =`
           _ts
           viewer {
             name
+            picture
+            _id
             _ts
           }
         }
@@ -232,6 +250,7 @@ module.exports = {
     GET_PROFILE_BY_SHARE_LINK_URL,
     GET_USER_BY_SUB,
     GET_USER_ID_BY_SUB,
+    GET_PROFILE_ID_BY_SUB,
     GET_VIEW_SESSIONS_BY_SHARE_LINK_URL,
     CREATE_USER,
     CREATE_SHARE_LINK,
