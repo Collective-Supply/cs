@@ -33,6 +33,7 @@ const Profile = () => {
         body: JSON.stringify(body)
         });
         const designerProfile = await res.json();
+        console.log(designerProfile)
         setProfileJson(designerProfile)
     };
     // useEffect and useState loads the user's profile
@@ -79,7 +80,6 @@ const Profile = () => {
                 <img src={user.picture} alt={user.name} />
                 <h2>{user.id}</h2>
                 <p>{user.email}</p>
-                <p>{user.sub}</p>
                 
                 <JSONPretty data={user} /> 
         </div>

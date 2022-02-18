@@ -6,7 +6,7 @@ const formattedResponse = require('./utils/formattedResponse');
 
 exports.handler = async (event) => {
 
-    const id = "323040669977280576";
+    const { id } = JSON.parse(event.body);
     const variables = { id };
     
     try {
