@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import LinkList from "./LinkList";
+import LinkForm from './LinkForm';
 
 const SharedLinks = () => {
     const { user, isAuthenticated } = useAuth0();
 
     const [links, setLinks] = useState([]);
+    const [profileId, setProfileId] = useState([]);
 
     // Loads all the shared links
     const loadLinks = async() => {
@@ -18,7 +20,10 @@ const SharedLinks = () => {
             });
             const resLinks = await res.json();
             const links = resLinks.profiles.data[0].share_links.data
+            const profileId = resLinks.profiles.data[0]._id
+            setProfileId(profileId)
             setLinks(links)
+  
        }catch(err) {
            console.error(err);
        } 
@@ -36,7 +41,8 @@ const SharedLinks = () => {
     // console.log(links)
     return <div className="container py-5">
         <h3 className="text-center mb5">Active Links</h3>
-        <LinkList links={links}/>
+        <LinkForm profileId={profileId} refreshLinks={loadLinks}/>
+        <LinkList links={links} refreshLinks={loadLinks} />
     </div>
 
 }

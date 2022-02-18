@@ -21,6 +21,7 @@ const GET_USER_BY_SUB = `
     name
     profiles {
       data {
+        _id
         share_links {
           data {
             link_name

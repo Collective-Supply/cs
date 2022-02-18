@@ -18,8 +18,8 @@ exports.handler = async (event) => {
 
     const url = makeid(5);
     const active = true;
-    const { profile_id, link_name, job_link } = JSON.parse(event.body);
-    const variables = { profile_id, link_name, job_link, url, active };
+    const { profile, link_name, job_link } = JSON.parse(event.body);
+    const variables = { profile, link_name, job_link, url, active };
 
     try {
         const { createShare_link } = await sendQuery(
