@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 
 export default function LinkForm({ profileId, refreshLinks }) {
+    // use states for clearing out forms after submission
     const [link_name, setLinkName] = useState('');
     const [job_link, setJobLink] = useState('');
 
+    // function to clear out the form after submission. '' means empty field
     const resetForm = () => {
         setLinkName('');
         setJobLink('');
     };
 
+    // function for form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         const profile = profileId;
@@ -18,6 +21,7 @@ export default function LinkForm({ profileId, refreshLinks }) {
                 method: 'POST',
                 body: JSON.stringify(body),
             });
+            // clears out the form and refreshes the link list to show the new link
             resetForm();
             refreshLinks();
         } catch (error) {

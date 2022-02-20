@@ -22,9 +22,6 @@ export default function LinkCardActive({link, refreshLinks }) {
     //below (line 8) should be correct on views
     const views = link.view_sessions.data;
     
-    // Why the hell does this get run 8 times?!
-    console.log(views)
-    
     return (
         <div className="card">
             <div className="card-header">

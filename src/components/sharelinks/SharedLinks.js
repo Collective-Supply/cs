@@ -8,6 +8,7 @@ const SharedLinks = () => {
 
     const [links, setLinks] = useState([]);
     const [profileId, setProfileId] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     // Loads all the shared links
     const loadLinks = async() => {
@@ -21,9 +22,9 @@ const SharedLinks = () => {
             const resLinks = await res.json();
             const links = resLinks.profiles.data[0].share_links.data
             const profileId = resLinks.profiles.data[0]._id
-            setProfileId(profileId)
-            setLinks(links)
-  
+            setProfileId(profileId);
+            setLinks(links);
+            setIsLoading(false);
        }catch(err) {
            console.error(err);
        } 
@@ -35,15 +36,16 @@ const SharedLinks = () => {
     // The user obj is in the useEffect dependency so that as soon as user obj is returned by Auth0, it kicks off the load links
     useEffect(() => {
         loadLinks(); 
-    }, [user]);
+    }, []);
 
 
     // console.log(links)
-    return <div className="container py-5">
+    return <>
+        { isLoading && <div>Loading...</div> }
         <h3 className="text-center mb5">Active Links</h3>
         <LinkForm profileId={profileId} refreshLinks={loadLinks}/>
         <LinkList links={links} refreshLinks={loadLinks} />
-    </div>
+    </>
 
 }
 

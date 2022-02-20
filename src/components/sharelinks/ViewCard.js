@@ -14,12 +14,24 @@ export default function ViewCard({view}) {
         return (date.toDateString() + ' - ' + strTime)
     }
 
+    const viewerProfileImage = view.viewer.picture;
+    const viewerName = view.viewer.name;
+    const viewTime = view.ts
+
     return (
-        
         <div className="card">
-            <img src={view.viewer.picture} alt={view.viewer.name} />
-            <p>{view.viewer.name}</p>
-            <p>{timeStampConvert(view._ts)}</p>
+            <img src={viewerProfileImage} alt={viewerName} />
+            <p>{viewerName}</p>
+            <p>Unique share link: 
+                <a 
+                    href={`https://` + `www.linkedin.com/search/results/people/?keywords=${viewerName}&origin=CLUSTER_EXPANSION` } 
+                    target="_blank" 
+                    rel="noreferrer noopener"
+                >
+                    {`Search for ${viewerName} on LinkedIn`}
+                </a>
+            </p>
+            <p>{timeStampConvert(viewTime)}</p>
         </div>
     )
 }
