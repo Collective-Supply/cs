@@ -16,7 +16,7 @@ export default function ViewCard({view}) {
 
     const viewerProfileImage = view.viewer.picture;
     const viewerName = view.viewer.name;
-    const viewTime = view.ts
+    const viewTime = view._ts
 
     return (
         <div className="card">

@@ -3,10 +3,12 @@ import { useAuth0 } from '@auth0/auth0-react';
 import JSONPretty from 'react-json-pretty';
 import ParameterReader from './ParameterReader';
 
-const Profile = () => {
+const ViewProfile = () => {
     const { user, isAuthenticated } = useAuth0();
     // Takes parameter of 'x' as in ?x=123, parses it and stores it in a cookie
     const url = ParameterReader('x');
+
+    const designerProfileDisabled = `"https://collective.supply/?x=${url}" is not a valid share link. Placeholder on explanation of what Collective.Supply is`
 
     // Loads designer's profile
     const loadProfile = async() => {
@@ -16,14 +18,19 @@ const Profile = () => {
         body: JSON.stringify(body)
         });
         const designerProfile = await res.json();
-        setProfileJson(designerProfile)
+        if (designerProfile.active == true) {
+            setProfileJson(designerProfile)
+        } else {
+            setProfileJson(designerProfileDisabled)
+        }
+        
     };
-    // useEffect and useState loads the user's profile
+    // useEffect and useState loads the user's profile if there's a url parameter
     useEffect(() =>{
         loadProfile();
-    }, []);
+    }, [window.location.search]);
     
-    const [profileJson, setProfileJson] = useState({}); 
+    const [profileJson, setProfileJson] = useState(); 
 
 
     // Get the viewer's user database ID using the viewer's user.sub that's passed from Auth0.
@@ -43,7 +50,7 @@ const Profile = () => {
         const share_link = profileJson._id;
         const viewer = await getViewer();
         const body = { viewer, share_link };
-        const res = await fetch('/api/createViewSession', {
+        await fetch('/api/createViewSession', {
             method: 'POST',
             body: JSON.stringify(body)
         });
@@ -64,5 +71,5 @@ const Profile = () => {
     )
 };    
 
-export default Profile;
+export default ViewProfile;
 

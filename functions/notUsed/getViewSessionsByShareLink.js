@@ -6,7 +6,7 @@ const formattedResponse = require('./utils/formattedResponse');
 
 exports.handler = async (event) => {
     
-    const url = "xYsHhttps://collective.supply/?x=Uwn82U";
+    const url = "https://collective.supply/?x=Uwn82U";
     const variables = { url };
     
     try {

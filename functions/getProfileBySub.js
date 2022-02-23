@@ -1,6 +1,6 @@
 const axios = require('axios');
 require('dotenv').config();
-const { GET_PROFILE_ID_BY_SUB } = require('./utils/graphQueries.js');
+const { GET_PROFILE_BY_SUB } = require('./utils/graphQueries.js');
 const sendQuery = require('./utils/sendQuery');
 const formattedResponse = require('./utils/formattedResponse');
 
@@ -10,7 +10,7 @@ exports.handler = async (event) => {
     
     try {
         const { user_by_sub } = await sendQuery(
-            GET_PROFILE_ID_BY_SUB, 
+            GET_PROFILE_BY_SUB, 
             variables
         );
 

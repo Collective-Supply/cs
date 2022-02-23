@@ -23,7 +23,7 @@ export default function LinkCardDisabled({link, refreshLinks }) {
         const id = link._id
         const body = { id }
         try {
-            await fetch('/api/deleteShareLink', {
+            await fetch('/api/sDelShareLink', {
                 method: 'POST',
                 body: JSON.stringify(body),
             });

@@ -1,4 +1,3 @@
-const axios = require('axios');
 require('dotenv').config();
 const { CREATE_SHARE_LINK } = require('./utils/graphQueries.js');
 const sendQuery = require('./utils/sendQuery');
@@ -18,8 +17,9 @@ exports.handler = async (event) => {
 
     const url = makeid(5);
     const active = true;
+    const s_del = false;
     const { profile, link_name, job_link } = JSON.parse(event.body);
-    const variables = { profile, link_name, job_link, url, active };
+    const variables = { profile, link_name, job_link, url, active, s_del };
 
     try {
         const { createShare_link } = await sendQuery(

@@ -27,6 +27,7 @@ type share_link {
   url: String
   view_sessions: [view_session] @relation
   active: Boolean
+  s_del: Boolean
 }
 
 type view_session {

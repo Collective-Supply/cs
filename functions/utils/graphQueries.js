@@ -2,6 +2,7 @@ const GET_PROFILE_BY_SHARE_LINK_URL = `
   query($url: String!) {
     share_link_by_url(url: $url) {
       _id
+      active
       profile {
         job_title
         years_of_exp
@@ -11,6 +12,21 @@ const GET_PROFILE_BY_SHARE_LINK_URL = `
           email
         }
       }
+    }
+  } 
+`;
+
+const GET_PROFILE_BY_SUB = `
+  query($sub: String!) {
+    user_by_sub(sub: $sub) {
+      name
+      email
+      profiles {
+        data {
+          job_title
+          years_of_exp
+        }
+      }    
     }
   } 
 `;
@@ -28,6 +44,7 @@ const GET_USER_BY_SUB = `
             job_link
             url
             active
+            s_del
             _ts
             _id
             view_sessions {
@@ -123,9 +140,8 @@ const CREATE_USER = `
   }
 `;
 
-// The connect: "" part is going to be tough, have to figure that out... it was originally "profile: { connect: "2387283" }""
 const CREATE_SHARE_LINK = `
-  mutation($profile: ID!, $link_name: String, $job_link: String, $url: String, $active: Boolean) {
+  mutation($profile: ID!, $link_name: String, $job_link: String, $url: String, $active: Boolean, $s_del: Boolean) {
     createShare_link(
       data: {
         profile: { connect: $profile }
@@ -133,6 +149,7 @@ const CREATE_SHARE_LINK = `
         job_link: $job_link
         url: $url
         active: $active
+        s_del: $s_del
       }
     ) {
       _id
@@ -217,6 +234,8 @@ const TOGGLE_SHARE_LINK_INACTIVE = `
   }
 `;
 
+
+
 const TOGGLE_SHARE_LINK_ACTIVE = `
   mutation($id: ID!) {
     updateShare_link(id: $id, data: { active: true }) {
@@ -247,9 +266,19 @@ const DELETE_SHARE_LINK = `
   }
 `
 
+const S_DEL_SHARE_LINK = `
+  mutation($id: ID!) {
+    updateShare_link(id: $id, data: { s_del: true }) {
+      _id
+      _ts
+    }
+  }
+`;
+
 module.exports = {
     GET_PROFILE_BY_SHARE_LINK_URL,
     GET_USER_BY_SUB,
+    GET_PROFILE_BY_SUB,
     GET_USER_ID_BY_SUB,
     GET_PROFILE_ID_BY_SUB,
     GET_VIEW_SESSIONS_BY_SHARE_LINK_URL,
@@ -258,6 +287,7 @@ module.exports = {
     CREATE_VIEW_SESSION,
     UPDATE_USER,
     TOGGLE_SHARE_LINK_INACTIVE,
+    S_DEL_SHARE_LINK,
     TOGGLE_SHARE_LINK_ACTIVE,
     DELETE_VIEW_SESSION,
     DELETE_SHARE_LINK,

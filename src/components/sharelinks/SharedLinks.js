@@ -20,10 +20,15 @@ const SharedLinks = () => {
                 body: JSON.stringify(body)
             });
             const resLinks = await res.json();
-            const links = resLinks.profiles.data[0].share_links.data
-            const profileId = resLinks.profiles.data[0]._id
-            setProfileId(profileId);
-            setLinks(links);
+
+            // if statement in case user has no current share links, which would cause it to return null and throw an error
+            if (resLinks.profiles.data.length > 0) {
+                const links = resLinks.profiles.data[0].share_links.data
+                const profileId = resLinks.profiles.data[0]._id
+                setProfileId(profileId);
+                setLinks(links);
+            }
+
             setIsLoading(false);
        }catch(err) {
            console.error(err);

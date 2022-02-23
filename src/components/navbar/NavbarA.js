@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 
-export default function Navbar() {
+export default function NavbarA() {
   return (
     <nav>
         <div>
@@ -11,8 +11,6 @@ export default function Navbar() {
             </h2>
         </div>
         <ul>
-            <li><Link to="/myprofile">My Profile</Link></li>
-            <li><Link to="/sharelinks">Share Links</Link></li>
             <li><Link to="/about">About CS</Link></li>
         </ul>
         <LoginButton />
