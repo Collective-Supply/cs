@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
-import ViewProfile from "./components/home/ViewProfile";
 import { useAuth0 } from '@auth0/auth0-react';
+import ViewProfile from "./components/home/ViewProfile";
 import Explanation from "./components/home/Explanation";
 import About from "./pages/About";
 import ShareLinks from "./pages/ShareLinks";
 
-const Home = () => {
+const Home = (props) => {
 
     const { user, isAuthenticated } = useAuth0();
 
@@ -32,7 +32,6 @@ const Home = () => {
         const isLoggedIn = isAuthenticated;
         const hasProfile = await checkProfile(); // returns undefined but still returns has profile
 
-        // performs logic based on the 3 variables
         if (hasParameter) {
             if (isLoggedIn) {
                 if (hasProfile) {
@@ -71,7 +70,7 @@ const Home = () => {
     }
 
     // Sets and adjusts the default homepage content based on the 1) url parameter 2) viewer login status 3) user owning a profile or not
-    const [pageContent, setPageContent] = useState(About()); 
+    const [pageContent, setPageContent] = useState(props); 
 
     // runs the status checker only after user is logged in and returns a user obj. User is in useEffect parameter so that it can check again once user has logged in
     useEffect(() =>{

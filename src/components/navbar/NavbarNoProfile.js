@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 
-export default function NavbarA() {
+export default function NavbarNoProfile() {
   return (
     <nav>
         <div>
