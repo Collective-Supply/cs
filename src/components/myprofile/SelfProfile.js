@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import JSONPretty from 'react-json-pretty';
 
 const SelfProfile = () => {
     const { user, isAuthenticated } = useAuth0();
@@ -17,8 +16,10 @@ const SelfProfile = () => {
                 body: JSON.stringify(body)
             });
             const designerProfile = await res.json();
-            setProfileJson(designerProfile)
+            setProfileUrl(designerProfile.profiles.data[0].profile_url)
+            // setFrame(<iframe src={designerProfile.profiles.data[0].profile_url} width="100%" height="900"></iframe>)
             setIsLoading(false);
+            // console.log(designerProfile.profiles.data[0].profile_url)
        }catch(err) {
            console.error(err);
        } 
@@ -30,17 +31,32 @@ const SelfProfile = () => {
     // The user obj is in the useEffect dependency so that as soon as user obj is returned by Auth0, it kicks off the load links
     useEffect(() => {
         loadProfile(); 
-    }, []);
+    }, [user]);
 
-    const [profileJson, setProfileJson] = useState({}); 
+    const [profileUrl, setProfileUrl] = useState(); 
+    
+
+
+
+
 
     return (
-        <>
-            { isLoading && <div>Loading...</div> }
-            <JSONPretty data={profileJson} />
-        </>
+
+            // { isLoading && <div>Loading...</div> }
+            // <iframe src={profileUrl} height="1000" width="100%"></iframe>
+
+        // <>
+        //      <frameset rows = "60%">
+        //         <frame name = "main" src = {profileUrl} />
+        //     </frameset>
+        // </>
+
+
+
+        <div style={{overflow: "hidden", position: 'absolute', height: "80%", width: "100%" }}>
+            <iframe style={{ height: "100%", margin: 0, minHeight: 100, top: 0, width: "100%" }} src={profileUrl}></iframe>
+        </div>
     )
 }    
 
 export default SelfProfile;
-

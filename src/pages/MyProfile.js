@@ -7,15 +7,8 @@ export default function MyProfile() {
     const { user, isAuthenticated } = useAuth0();
     
     return(
-        <div>
-            <h1>My Profile</h1>
-            {useAuth0().isAuthenticated && <p>{user.name}</p>}
-            {isAuthenticated && (
-            <div>
-                <img src={user.picture} alt={user.name} />
-                <SelfProfile />
-            </div>
-        )}
-        </div>
+        <>
+            <SelfProfile />
+        </>
     )
 }

@@ -34,7 +34,7 @@ export default function LinkForm({ profileId, refreshLinks }) {
             <div className="card-body">
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="link_name">Name of your share link (eg Google job app)</label>
+                        <label htmlFor="link_name">Name of your unique share link (e.g. Google senior designer application)</label>
                         <input
                             type="text"
                             name="link_name"
@@ -44,7 +44,7 @@ export default function LinkForm({ profileId, refreshLinks }) {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="job_link">URL of job description (optional)</label>
+                        <label htmlFor="job_link">URL of job posting *optional</label>
                         <textarea
                             name="job_link"
                             className="form-control"

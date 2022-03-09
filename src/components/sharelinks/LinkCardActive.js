@@ -1,5 +1,6 @@
 import React from 'react'
 import ViewList from './ViewList';
+import utcTimeConverter from './utcTimeConverter';
 
 export default function LinkCardActive({link, refreshLinks }) {  
 
@@ -18,8 +19,7 @@ export default function LinkCardActive({link, refreshLinks }) {
             console.error("Something went wrong with disabling a link", error)
         }
     } 
-
-    //below (line 8) should be correct on views
+    
     const views = link.view_sessions.data;
     
     return (
@@ -30,6 +30,7 @@ export default function LinkCardActive({link, refreshLinks }) {
             <div className="card-body">
                 <p>Unique share link: <a href={`https://collective.supply/?x=${link.url}`}>{`https://collective.supply/?x=${link.url}`}</a></p>
                 <p>{link.job_link}</p>
+                <p>Updated on: {utcTimeConverter(link._ts)}</p>
                 
                 <ViewList views={views}/>
             </div>

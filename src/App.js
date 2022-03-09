@@ -10,6 +10,9 @@ import ShareLinks from "./pages/ShareLinks";
 import Home from "./Home";
 import ViewProfile from "./components/home/ViewProfile";
 import Explanation from "./components/home/Explanation";
+import { Container } from './styled/Container';
+import { Main } from './styled/Main';
+import Global from './styled/Global';
 
 function App() {
 
@@ -92,26 +95,31 @@ function App() {
     // runs the status checker only after user is logged in and returns a user obj. User is in useEffect parameter so that it can check again once user has logged in
     useEffect(() =>{
         userStatusChecker();
-    }, [user]);
+    }, [isAuthenticated]);
 
 
-  return (
-      <>
-        {/* <DataProvider> */}
-          <Router>
-            {navbarType}
-            <Routes>
-              <Route exact path="/" element={<Home 
-                                              pageContent={pageContent}
-                                            />} />
-              <Route exact path="/myprofile" element={<MyProfile />} /> 
-              <Route exact path="/sharelinks" element={<ShareLinks />} />
-              <Route exact path="/about" element={<About />} />
-            </Routes>
-          </Router>
-        {/* </DataProvider> */}
-      </>
-  );
+    return (
+        <>
+            {/* <DataProvider> */}
+            <Global />
+                <Router>
+                    <Main>
+                        <Container>
+                            {navbarType}
+                            <Routes>
+                                <Route exact path="/" element={<Home 
+                                                        pageContent={pageContent}
+                                                        />} />
+                                <Route exact path="/myprofile" element={<MyProfile />} /> 
+                                <Route exact path="/sharelinks" element={<ShareLinks />} />
+                                <Route exact path="/about" element={<About />} />
+                            </Routes>
+                        </Container>
+                    </Main>
+                </Router>
+            {/* </DataProvider> */}
+        </>
+    );
 }
 
 export default App;

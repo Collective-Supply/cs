@@ -45,7 +45,7 @@ const ViewProfile = () => {
         return viewer._id
     };
 
-    // Async function to pass the sharelink ID and viewer ID to create a view session. Only issue remaining is that when I save it, it loads it 5 times but that could be netlify being a douchenozzle
+    // Async function to pass the sharelink ID and viewer ID to create a view session.
     const createViewSession = async() => {
         const share_link = profileJson._id;
         const viewer = await getViewer();
@@ -66,6 +66,7 @@ const ViewProfile = () => {
         isAuthenticated && (
         <div>
                 <JSONPretty data={profileJson} />
+                <iframe src="https://collectivesupply.cc/designers/corazon" width="100%" height="900"></iframe>
         </div>
         )
     )

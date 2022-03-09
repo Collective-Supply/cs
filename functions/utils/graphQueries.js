@@ -6,6 +6,7 @@ const GET_PROFILE_BY_SHARE_LINK_URL = `
       profile {
         job_title
         years_of_exp
+        profile_url
         owner {
           name
           picture
@@ -25,6 +26,7 @@ const GET_PROFILE_BY_SUB = `
         data {
           job_title
           years_of_exp
+          profile_url
         }
       }    
     }

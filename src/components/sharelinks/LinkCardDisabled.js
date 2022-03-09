@@ -1,5 +1,6 @@
 import React from 'react'
 import ViewList from './ViewList';
+import utcTimeConverter from './utcTimeConverter';
 
 export default function LinkCardDisabled({link, refreshLinks }) {  
 
@@ -44,6 +45,7 @@ export default function LinkCardDisabled({link, refreshLinks }) {
             <div className="card-body">
                 <p>Unique share link: <a href={`https://collective.supply/?x=${link.url}`}>{`https://collective.supply/?x=${link.url}`}</a></p>
                 <p>{link.job_link}</p>
+                <p>Updated on: {utcTimeConverter(link._ts)}</p>
                 
                 {/* <p>Viewed by: {views.data[0].viewer.name} at time: {views.data[0]._id}</p> */}
                 

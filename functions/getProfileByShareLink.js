@@ -1,4 +1,3 @@
-const axios = require('axios');
 require('dotenv').config();
 const { GET_PROFILE_BY_SHARE_LINK_URL } = require('./utils/graphQueries.js');
 const sendQuery = require('./utils/sendQuery');
