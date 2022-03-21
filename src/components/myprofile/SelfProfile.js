@@ -31,7 +31,7 @@ const SelfProfile = () => {
     // The user obj is in the useEffect dependency so that as soon as user obj is returned by Auth0, it kicks off the load links
     useEffect(() => {
         loadProfile(); 
-    }, [user]);
+    }, [useAuth0().isAuthenticated]);
 
     const [profileUrl, setProfileUrl] = useState(); 
     
@@ -41,19 +41,7 @@ const SelfProfile = () => {
 
 
     return (
-
-            // { isLoading && <div>Loading...</div> }
-            // <iframe src={profileUrl} height="1000" width="100%"></iframe>
-
-        // <>
-        //      <frameset rows = "60%">
-        //         <frame name = "main" src = {profileUrl} />
-        //     </frameset>
-        // </>
-
-
-
-        <div style={{overflow: "hidden", position: 'absolute', height: "80%", width: "100%" }}>
+        <div style={{overflow: "hidden", position: 'absolute', height: "85%", width: "100%" }}>
             <iframe style={{ height: "100%", margin: 0, minHeight: 100, top: 0, width: "100%" }} src={profileUrl}></iframe>
         </div>
     )

@@ -7,7 +7,7 @@ const LoginButton = () => {
     return (
         !isAuthenticated && (
             <button onClick={() => loginWithPopup()}>
-                Log In
+                LinkedIn Sign In
             </button>
         )
     )

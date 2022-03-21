@@ -1,40 +1,13 @@
+import { useAuth0 } from '@auth0/auth0-react';
 export default function Explanation() {
-
-    // switch (hasParameter) {
-    //     case true:
-    //         switch (isLoggedIn) {
-    //             case true: 
-    //                 switch (hasProfile) {
-    //                     case true:
-    //                         // has parameter, is logged in, has profile (recruiter/designer)
-    //                     case false:
-    //                         // has parameter, is logged in, no profile (recruiter)
-    //                 }
-    //             case false:
-    //                 // has parameter, not logged in (recruiter?)
-    //         }
-    //     case false:
-    //         switch (isLoggedIn) {
-    //             case true:
-    //                 switch (hasProfile) {
-    //                     case true:
-    //                         // no parameter, is logged in, has profile (designer)
-    //                     case false:
-    //                         // no parameter, is logged in, no profile (???)
-    //                 }
-    //             case false:
-    //                 // no parameter, not logged in (???)
-    //         }
-    // }
-
-
-
-
+const { loginWithPopup } = useAuth0();
+  
   return (
-    <div>
-        <h1>Explanation of Collective.Supply</h1>
-        <p>Log in to view the designer's profile</p>
-        <p>Please keep in mind that by viewing the designer's profile. The designer who shared the link with you will be able to see your name, profile photo and the time of your visit.</p>
+    <div style={{overflow: "hidden", position: 'absolute', height: "80%", width: "100%" }}>
+      <iframe style={{ height: "30%", margin: 0, minHeight: 100, top: 0, width: "100%" }} src="https://www.collectivesupply.cc/explanation"></iframe>    
+      <button onClick={() => loginWithPopup()}>
+          View With LinkedIn
+      </button>
     </div>
   )
 }
