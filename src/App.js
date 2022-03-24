@@ -31,7 +31,7 @@ function App() {
                 const profile = resLinks.profiles.data.length > 0
                 return profile
             } catch(err) {
-                console.error("catch error: " + err);
+                console.error("catch error: ", err);
             } 
     };
 
