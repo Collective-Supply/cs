@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { DataProvider } from './context/DataContext';
+// import { DataProvider } from './context/DataContext';
 import Navbar from './components/navbar/Navbar';
 import NavbarNoProfile from './components/navbar/NavbarNoProfile';
 import MyProfile from "./pages/MyProfile";
