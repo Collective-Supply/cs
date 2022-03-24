@@ -18,7 +18,7 @@ const ViewProfile = () => {
         });
         const designerProfile = await res.json();
         if (designerProfile) {
-            if (designerProfile.active == true) {
+            if (designerProfile.active === true) {
             setProfileJson(designerProfile)
             setProfileUrl(designerProfile.profile.profile_url)
             console.log("loadProfile")
@@ -77,7 +77,7 @@ const ViewProfile = () => {
     // this is returning the auth0 viewer's info grabbed from linkedin's OAuth API, this info shouldn't be rendered, instead it should be passed to DB to create a new user        
         isAuthenticated && (
         <div style={{overflow: "hidden", position: 'absolute', height: "85%", width: "100%" }}>
-            <iframe style={{ height: "100%", margin: 0, minHeight: 100, top: 0, width: "100%" }} src={profileUrl}></iframe>
+            <iframe title="main" style={{ height: "100%", margin: 0, minHeight: 100, top: 0, width: "100%" }} src={profileUrl}></iframe>
         </div>
         )
     )

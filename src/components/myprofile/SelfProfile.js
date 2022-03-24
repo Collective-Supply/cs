@@ -42,7 +42,7 @@ const SelfProfile = () => {
 
     return (
         <div style={{overflow: "hidden", position: 'absolute', height: "85%", width: "100%" }}>
-            <iframe style={{ height: "100%", margin: 0, minHeight: 100, top: 0, width: "100%" }} src={profileUrl}></iframe>
+            <iframe title="main" style={{ height: "100%", margin: 0, minHeight: 100, top: 0, width: "100%" }} src={profileUrl}></iframe>
         </div>
     )
 }    

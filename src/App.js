@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react/cjs/react.development';
+import { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { DataProvider } from './context/DataContext';
 import Navbar from './components/navbar/Navbar';
@@ -90,7 +90,7 @@ function App() {
 
     // Sets and adjusts the default homepage content based on the 1) url parameter 2) viewer login status 3) user owning a profile or not
     // Drilling the page content selector down into Home.js
-    const [pageContent, setPageContent] = useState(About()); 
+    const [pageContent, setPageContent] = useState(<About />); 
 
     // runs the status checker only after user is logged in and returns a user obj. User is in useEffect parameter so that it can check again once user has logged in
     useEffect(() =>{
