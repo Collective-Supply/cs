@@ -6,10 +6,10 @@ module.exports = (parameterName) => {
     const urlParams = new URLSearchParams(queryString);
     const LinkId = urlParams.get(parameterName);
     
-    // // *** COOKIE SETTINGS - replace if removing login with popup instead of redirect in LoginButton.js
-    // // Set a cookie to remember the URL param to recall when user signs in
-    // // Keep in mind that the cookie is only set for this domain so once you move 
-    // // shared or profile director over, it will need to be updated!
+    // *** COOKIE SETTINGS - replace if removing login with popup instead of redirect in LoginButton.js
+    // Set a cookie to remember the URL param to recall when user signs in
+    // Keep in mind that the cookie is only set for this domain so once you move 
+    // shared or profile director over, it will need to be updated!
     // if (LinkId) {
     //     document.cookie = `urlParam=${LinkId}`;
     // };
@@ -19,7 +19,8 @@ module.exports = (parameterName) => {
     //     .split('; ')
     //     .find(row => row.startsWith('urlParam='))
     //     .split('=')[1];
-    // // returns the url parameter
-    // console.log(urlParamCookie)   
+    // // returns the url parameter   
     // return urlParamCookie;
+
+    return LinkId
 };
