@@ -15,7 +15,8 @@ export default function NavbarNoProfile() {
           <ul>
             <StyledNavItems>
               <li><StyledLink to="/about">About CS</StyledLink></li>
-              <li><LoginButton /><LogoutButton /></li>
+              {/* <li><LoginButton /><LogoutButton /></li> */}
+              <li><LogoutButton /></li>
             </StyledNavItems>
           </ul>
         </StyledNavbar>

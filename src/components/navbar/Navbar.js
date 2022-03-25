@@ -19,7 +19,8 @@ export default function Navbar(version) {
                 <li><StyledLink to="/myprofile">My Profile</StyledLink></li>
                 <li><StyledLink to="/sharelinks">Share Links</StyledLink></li>
                 <li><StyledLink to="/about">About CS</StyledLink></li>
-                <li><LoginButton /><LogoutButton /></li>
+                {/* <li><LoginButton /><LogoutButton /></li> */}
+                <li><LogoutButton /></li>
               </StyledNavItems>
           </ul>
         </StyledNavbar>
